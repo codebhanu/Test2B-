@@ -43,6 +43,7 @@ public class HelloController {
             // Display error message for empty fields
             errorText.setText("Please Provide Username and Password.");
         } else {
+
             // Check if entered credentials match static credentials
             if (enteredUsername.equals(staticUsername) && enteredPassword.equals(staticPassword)) {
                 // Authentication success
@@ -50,9 +51,16 @@ public class HelloController {
                 errorText.setText("Success!!!");
                 // Here you can navigate to another scene or perform other actions upon successful authentication
             } else {
+
+                if (enteredUsername.equals(staticUsername)){
+                    failedAttempts++;
+                    errorText.setText(" Password is wrong "+failedAttempts+" out of 5");
+                    return;
+
+                }
                 // Authentication failure
                 errorText.setText("User Name or Password is wrong");
-                failedAttempts++;
+
 
             }
         }
